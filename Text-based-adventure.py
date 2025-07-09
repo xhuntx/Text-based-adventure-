@@ -71,7 +71,7 @@ if Actino3 == "attack":
     for a in range(how_many1):
         print(f"The floating eye has {floatingEyeHP} HP")
         print(f"Your strength is {Strength}")
-        roll1 = random.randint(2,74)*Strength
+        roll1 = random.randint(2,74)+Strength
         print(f"You attacked the eye for {roll1}HP (Attack {a+1})")
         floatingEyeHP -= roll1 
         print(f"The floating eye has {floatingEyeHP} HP")
@@ -161,7 +161,7 @@ if Actino4.lower() == "attack":
         print(f"The Final Dragon has {final_DragonHP} HP.")
         print(f"Your Strength is {Strength}.")
 
-        roll1 = random.randint(2, 74) * Strength
+        roll1 = random.randint(2, 74) + Strength
         print(f"> You attacked the Dragon for {roll1} damage!")
         final_DragonHP = max(0, final_DragonHP - roll1)
         print(f"> The Dragon now has {final_DragonHP} HP.")
