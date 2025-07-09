@@ -7,6 +7,7 @@ Charisma = 1
 boarHP = 10
 floatingEyeHP = 75
 coins = 0
+final_DragonHP = 150
 
 # Player Name
 playerName = input("What is your adventurer's name? ")
@@ -138,4 +139,68 @@ elif merchant == "charisma+strength":
     print(f"you gained {roll1} Charisma Points")
     Charisma= Charisma + roll1
     print(f"Your new Charisma is {Charisma}") 
+
 # final battle 
+Actino4 = input("What will you do? attack or run? (Run now and you auto lose by the way) ")
+
+def get_int_input(prompt):
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            print("Please enter a valid number.")
+
+if Actino4.lower() == "attack":
+    how_many2 = get_int_input("How many times do you want to attack? ")
+
+    for a in range(how_many2):
+        if final_DragonHP <= 0 or HP <= 0:
+            break
+
+        print(f"\n  Attack {a + 1} ===")
+        print(f"The Final Dragon has {final_DragonHP} HP.")
+        print(f"Your Strength is {Strength}.")
+
+        roll1 = random.randint(2, 74) * Strength
+        print(f"> You attacked the Dragon for {roll1} damage!")
+        final_DragonHP = max(0, final_DragonHP - roll1)
+        print(f"> The Dragon now has {final_DragonHP} HP.")
+
+        if final_DragonHP <= 0:
+            print("\n> The Dragon is dead and you enter the city!!!!!")
+            time.sleep(2)
+            print("> Congratsssssss you winnnnnnnnnnnnnnnnnnnnn!")
+            break
+
+        time.sleep(0.5)
+
+        dragonAttack = random.randint(5, 20)
+        HP = max(0, HP - dragonAttack)
+        print(f"\n> The Dragon hit you for {dragonAttack} HP!")
+        print(f"> You now have {HP} HP.")
+
+        if HP <= 0:
+            print("\n> You are dead...")
+            break
+        elif HP <= 25:
+            print(">>> WARNING: You are critically low on HP! I advise you run!")
+
+        while True:
+            Attackagain1 = input("\nDo you want to attack again or run? (attack/run): ").strip().lower()
+            if Attackagain1 == "attack":
+                break
+            elif Attackagain1 == "run":
+                print(f"\n{playerName} ran away and got incinerated.")
+                exit()
+            else:
+                print("Invalid option. Please type 'attack' or 'run'.")
+
+elif Actino4.lower() == "run":
+    confirm = input("Are you sure you want to leave? (yes/no): ").strip().lower()
+    if confirm == "yes":
+        print(f"\n{playerName} tried to walk away and promptly got incinerated.")
+    else:
+        print("\nYou stand your ground...")
+
+time.sleep(2)
+print("\nHope you enjoyed!!!!")
